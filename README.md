@@ -103,9 +103,17 @@ $teste->get([
         
 ```
 $teste = new DataCases([
-    [<case>] => ['option' => value],
-    ['small'] => ['size' => 1],
-    [except] => ['small',long]
+    [<case> => [
+            <option> => value
+        ]
+    ],
+    ['small' => [
+            'size' => 1
+        ]
+    ],
+    [
+        except => ['small',long]
+    ]
 ]);
 ```
      
