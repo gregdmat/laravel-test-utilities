@@ -2,14 +2,18 @@
 
 namespace Gregdmat\LaravelTestUtilities;
 
+use Gregdmat\LaravelTestUtilities\src\Console\LTUInstallerCommand;
+
 class LTUServiceProvider extends \Illuminate\Support\ServiceProvider
 {
 
     public function boot()
     {
-        $this->publishes([
-            __DIR__ . 'config/dataCases.php' => config_path('dataCases.php')
-        ]);
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                LTUInstallerCommand::class
+            ]);
+        }
     }
 
     public function register()

@@ -1,8 +1,10 @@
+
 ## Instalation
+
 ```
 composer require gregdmat/laravel-test-utilities
 
-php artisan vendor:publish --tag=config
+php artisan ltu:intall
 ```
 
 # Assert Structure and Value

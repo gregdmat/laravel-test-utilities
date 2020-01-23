@@ -21,11 +21,12 @@ abstract class TypeDataCases
         $this->cases = array();
 
         if (!empty($this->config)) {
-            $config = config("dataCases." . $this->config);
+            $config = config("ltu.data_cases." . $this->config);
+
             if (is_array($config)) {
                 foreach ($config as $case => $value) {
                     if (
-                        !(isset($this->options['except']) && in_array($case, $this->options['except']))
+                        !(isset($this->options['except']) && !in_array($case, $this->options['except']) && $value)
                     )
                     {
                         array_push($this->cases, $this->$case());
