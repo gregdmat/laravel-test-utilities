@@ -8,7 +8,7 @@ class LTUServiceProvider extends \Illuminate\Support\ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__ . 'vendor/gregdmat/laravel-test-utilities/src/config/dataCases.php' => config_path('dataCases.php')
+            __DIR__ . 'config/dataCases.php' => config_path('dataCases.php')
         ]);
     }
 
