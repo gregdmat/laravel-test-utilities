@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Gregdmat\LaravelTestUtilities\src\Asserts;
+namespace Gregdmat\LaravelTestUtilities\Asserts;
 
 
 use Illuminate\Foundation\Testing\Assert as PHPUnit;

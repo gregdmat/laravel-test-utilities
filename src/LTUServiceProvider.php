@@ -1,5 +1,6 @@
 <?php
 
+namespace Gregdmat\LaravelTestUtilities;
 
 class LTUServiceProvider extends \Illuminate\Support\ServiceProvider
 {
