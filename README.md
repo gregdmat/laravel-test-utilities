@@ -105,16 +105,10 @@ $teste->get([
         
 ```
 $teste = new DataCases([
-    [<case> => [
-            <option> => value
-        ]
-    ],
-    ['small' => [
-            'size' => 1
-        ]
-    ],
-    [
-        except => ['small',long]
+    'integer' => [
+        'except' => ['negative', 'positive'],
+        'positive.min' => 1,
+        'positive.max' => 3,
     ]
 ]);
 ```

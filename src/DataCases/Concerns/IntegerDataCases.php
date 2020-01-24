@@ -15,16 +15,16 @@ class IntegerDataCases extends TypeDataCases
     protected function negative()
     {
         return rand(
-            isset($this->options['negative']['min']) ? $this->options['negative']['min'] : -999999,
-            isset($this->options['negative']['min']) ? $this->options['negative']['max'] : -1
+            isset($this->options['negative.min']) ? $this->options['negative.min'] : -999999,
+            isset($this->options['negative.max']) ? $this->options['negative.max'] : -1
         );
     }
 
     protected function positive()
     {
         return rand(
-            isset($this->options['positive']['min']) ? $this->options['negative']['min'] : 1,
-            isset($this->options['positive']['min']) ? $this->options['negative']['max'] : 999999
+            isset($this->options['positive.min']) ? $this->options['positive.min'] : 1,
+            isset($this->options['positive.max']) ? $this->options['positive.max'] : 999999
         );
     }
 }

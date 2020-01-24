@@ -13,7 +13,8 @@ abstract class TypeDataCases
 
     public function __construct(array $options = [])
     {
-        $this->options = $options;
+        if(isset($options[$this->config]))
+            $this->options = $options[$this->config];
     }
 
     public function cases(): array
@@ -22,11 +23,10 @@ abstract class TypeDataCases
 
         if (!empty($this->config)) {
             $config = config("ltu.data_cases." . $this->config);
-
             if (is_array($config)) {
                 foreach ($config as $case => $value) {
                     if (
-                        !(isset($this->options['except']) && !in_array($case, $this->options['except']) && $value)
+                        !(isset($this->options['except'])  && in_array($case, $this->options['except']))
                     )
                     {
                         array_push($this->cases, $this->$case());
