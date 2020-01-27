@@ -4,6 +4,7 @@
 namespace Gregdmat\LaravelTestUtilities\Asserts;
 
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Testing\Assert as PHPUnit;
 use Illuminate\Contracts\Validation\Rule;
 
@@ -20,13 +21,13 @@ trait ValidatorAsserts
     {
         foreach ($structure as $key => $value) {
             if (is_array($value) && $key === '*') {
-                PHPUnit::assertIsArray($data);
+                PHPUnit::assertTrue(is_array($data) ||  $data instanceof Collection,  "$currentKey is not iterable.");
 
                 foreach ($data as $keyItem => $dataItem) {
-                    if($keyItem != '_rules')
+                    if($keyItem !== '_rules')
                         $this->assertStructureAndValue($structure['*'], $dataItem, $keyItem);
                 }
-            }elseif (is_array($data)){
+            }elseif (is_array($data) || $data instanceof Collection){
                 if($key != '_rules')
                 {
                     PHPUnit::assertArrayHasKey($key, $data);
@@ -38,7 +39,7 @@ trait ValidatorAsserts
                 foreach ((array) $value as $rule)
                 {
                     if(is_callable($rule)){
-                        PHPUnit::assertTrue($rule(), "Failed at closure of $currentKey attribute.");
+                        PHPUnit::assertTrue($rule($data), "Failed at closure of $currentKey attribute.");
                     }
                     elseif(method_exists($this, $rule))
                         $this->$rule($currentKey, $data);
