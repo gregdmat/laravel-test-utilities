@@ -20,7 +20,8 @@ return [
             'past' => true,
             'today' => true,
             'future' => true,
-            'string' => true
+            'string' => true,
+            'null' => true
         ]
 
     ]

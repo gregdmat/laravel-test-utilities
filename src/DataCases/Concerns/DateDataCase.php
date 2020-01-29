@@ -32,4 +32,9 @@ class DateDataCase extends TypeDataCases
     {
         return Carbon::today()->toDateTimeString();
     }
+
+    public function null()
+    {
+        return null;
+    }
 }
