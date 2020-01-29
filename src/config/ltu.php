@@ -14,6 +14,13 @@ return [
             'zero' => true,
             'negative' => true,
             'positive' => true
+        ],
+
+        'date' => [
+            'past' => true,
+            'today' => true,
+            'future' => true,
+            'string' => true
         ]
 
     ]

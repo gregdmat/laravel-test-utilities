@@ -6,6 +6,7 @@ namespace Gregdmat\LaravelTestUtilities\DataCases;
 
 use Gregdmat\LaravelTestUtilities\DataCases\Concerns\IntegerDataCases;
 use Gregdmat\LaravelTestUtilities\DataCases\Concerns\StringDataCases;
+use Gregdmat\LaravelTestUtilities\src\DataCases\Concerns\DateDataCase;
 use Illuminate\Database\Eloquent\Model;
 
 class DataCases
@@ -13,12 +14,14 @@ class DataCases
     protected $options;
     protected $stringCases;
     protected $integerCases;
+    protected $dateCases;
 
     public function __construct(array $options = [])
     {
         $this->options = $options;
         $this->stringCases = new StringDataCases($options);
         $this->integerCases = new IntegerDataCases($options);
+        $this->dateCases = new DateDataCase($options);
     }
 
     public function get(array $stucture) : array
