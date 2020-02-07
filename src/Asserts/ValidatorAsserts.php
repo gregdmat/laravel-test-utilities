@@ -22,7 +22,7 @@ trait ValidatorAsserts
 
     }
 
-    private function getFirstError(Validator $validator)
+    private function getFirstError($validator)
     {
         $errors = $validator->errors()->messages();
         $keys = array_keys($validator->errors()->messages());
