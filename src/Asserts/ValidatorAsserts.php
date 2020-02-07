@@ -27,10 +27,10 @@ trait ValidatorAsserts
         $errors = $validator->errors()->messages();
         $keys = array_keys($validator->errors()->messages());
 
-        if(isset($errors[$keys[0]][0]))
-            return $errors[$keys[0]][0];
+        if(empty($errors))
+            return '';
 
-        return '';
+        return $errors[$keys[0]][0];
     }
 
 
