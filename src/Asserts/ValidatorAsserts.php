@@ -26,7 +26,11 @@ trait ValidatorAsserts
     {
         $errors = $validator->errors()->messages();
         $keys = array_keys($validator->errors()->messages());
-        return $errors[$keys[0]][0];
+
+        if(isset($errors[$keys[0]][0]))
+            return $errors[$keys[0]][0];
+
+        return '';
     }
 
 
