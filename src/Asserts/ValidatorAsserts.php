@@ -3,10 +3,8 @@
 
 namespace Gregdmat\LaravelTestUtilities\Asserts;
 
-
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Testing\Assert as PHPUnit;
-use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Support\Facades\Validator;
 
 trait ValidatorAsserts
 {
@@ -17,57 +15,19 @@ trait ValidatorAsserts
         'bool'
     ];
 
-    public function assertStructureAndValue(array $structure, $data, $currentKey = 'Undefined')
+    public function assertStructureAndValue(array $structure, $data)
     {
-        foreach ($structure as $key => $value) {
-            if (is_array($value) && $key === '*') {
-                PHPUnit::assertTrue(is_array($data) ||  $data instanceof Collection,  "$currentKey is not iterable.");
+        $validator = Validator::make($data, $structure);
+        PHPUnit::assertFalse($validator->fails(), $this->getFirstError($validator));
 
-                foreach ($data as $keyItem => $dataItem) {
-                    if($keyItem !== '_rules')
-                        $this->assertStructureAndValue($structure['*'], $dataItem, $keyItem);
-                }
-            }elseif (is_array($data) || $data instanceof Collection){
-                if($key != '_rules')
-                {
-                    PHPUnit::assertArrayHasKey($key, $data);
-                    $this->assertStructureAndValue($value, $data[$key], $key);
-                }
-            }elseif($value instanceof Rule){
-                PHPUnit::assertTrue($value->passes($currentKey, $data), $value->message());
-            }else{
-                foreach ((array) $value as $rule)
-                {
-                    if(is_callable($rule)){
-                        PHPUnit::assertTrue($rule($data), "Failed at closure of $currentKey attribute.");
-                    }
-                    elseif(method_exists($this, $rule))
-                        $this->$rule($currentKey, $data);
-                }
-            }
-        }
     }
 
-    private function required($key, $value)
+    private function getFirstError(Validator $validator)
     {
-        PHPUnit::assertTrue(!empty($value), "$key can't be empty.");
+        $errors = $validator->errors()->messages();
+        $keys = array_keys($validator->errors()->messages());
+        return $errors[$keys[0]][0];
     }
 
-    private function integer($key, $value)
-    {
-        PHPUnit::assertTrue((is_int($value) || empty($value)), "$key is not integer.");
-    }
 
-    private function string($key, $value)
-    {
-        PHPUnit::assertTrue((is_string($value) || empty($value)), "$key is not string.");
-    }
-
-    private function bool($key, $value, $message = '')
-    {
-        if(empty($message))
-            $message = "$key is not bool.";
-
-        PHPUnit::assertTrue((is_bool($value) || empty($value)), $message);
-    }
 }

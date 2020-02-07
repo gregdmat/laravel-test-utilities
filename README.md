@@ -11,40 +11,9 @@ php artisan ltu:intall
 
 - Basic usage
     - Use the ValidatorAsserts trait;
-    - Call $this->assertStructureAndValue(array $structure, $data);
-    - Add the reservation key '_rules' in the structure array; 
+    - Call $this->assertStructureAndValue($rules, $data);
+    - Rules like a Validator, see https://laravel.com/docs/6.x/validation#manually-creating-validators;
     
-- Structure format example
-
-```
-[
-    'name' => [
-        '_rules' => ['required'],
-        'first_name' => [
-            '_rules' => ['required', new ExampleRule]
-        ]
-    ]
-]
-```
-    
-- For lists add '*' in the external key
-   
- ```
-[
-    * => [
-        'name' => ['_rules' => 'required']
-    ]
-]
- ```
-
-- Avaible rules:
-    - required
-    - integer
-    - bool
-    - string
-    - Rule class (see https://laravel.com/docs/6.x/validation#custom-validation-rules)
-    - Bool closure
-
 ## Data Cases
     This feature provides several scenarios for a data type.
 
