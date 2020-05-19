@@ -1,12 +1,12 @@
 <?php
 
 
-namespace Gregdmat\LaravelTestUtilities\src\Console;
+namespace Gregdmat\LaravelTestUtilities\Console;
 
 
 use Illuminate\Console\Command;
 
-class LTUInstallerCommand extends Command
+class LTUInstaller extends Command
 {
     protected $signature = 'ltu:install';
 

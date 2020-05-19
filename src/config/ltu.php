@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'api_mocks' => [
+
+    ],
+
     'data_cases' => [
 
         'string' => [

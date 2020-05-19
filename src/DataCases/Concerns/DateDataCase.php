@@ -1,8 +1,7 @@
 <?php
 
 
-namespace Gregdmat\LaravelTestUtilities\src\DataCases\Concerns;
-
+namespace Gregdmat\LaravelTestUtilities\DataCases\Concerns;
 
 use Carbon\Carbon;
 use Gregdmat\LaravelTestUtilities\DataCases\Concerns\TypeDataCases;
